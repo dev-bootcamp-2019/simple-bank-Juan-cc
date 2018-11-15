@@ -103,7 +103,7 @@ contract SimpleBank {
            Subtract the amount from the sender's balance, and try to send that amount of ether
            to the user attempting to withdraw. 
            return the user's balance.*/
-        require(withdrawAmount >= balances[msg.sender], "Insufficient funds to withdraw.");
+        require(withdrawAmount <= balances[msg.sender], "Insufficient funds to withdraw.");
         msg.sender.transfer(withdrawAmount);
         balances[msg.sender] -= withdrawAmount;
         emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
